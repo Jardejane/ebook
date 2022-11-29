@@ -22,4 +22,24 @@ export class EbookService {
     });
     return ebook;
   }
+
+  async EbookGetAll(){
+    return this.prisma.ebook.findMany()
+  }
+  
+  async EbookGetId(id: string){
+     const EbookId = await this.prisma.ebook.findUnique({
+      where:{
+        id,
+      }
+     })
+
+     if(!EbookId){
+      console.log(Error)
+      throw new Error('Book does not exists!');
+     }
+
+     return EbookId
+  }
+
 }
