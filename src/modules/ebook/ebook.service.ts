@@ -63,4 +63,24 @@ export class EbookService {
 
   }
 
+  async EbookDelete(id: string){
+    const EbookId = await this.prisma.ebook.findUnique({
+      where:{
+        id,
+      }
+     })
+
+     if(!EbookId){
+      console.log(Error)
+      throw new Error('Book does not exists!');
+     }
+
+     return await this.prisma.ebook.delete({
+      where:{
+        id,
+      }
+     })
+
+  }
+
 }

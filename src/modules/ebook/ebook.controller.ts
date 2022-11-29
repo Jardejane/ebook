@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param, Put } from "@nestjs/common";
+import { Controller, Post, Body, Get, Param, Put, Delete } from "@nestjs/common";
 import { ebookDto } from "./Dto.book";
 import { EbookService } from "./ebook.service";
 
@@ -42,6 +42,17 @@ export class EbookController{
     async Update(@Param('id') id: string, @Body() data: ebookDto){
         try {
             return this.ebookService.EbookUpdate(id, data)
+        } catch (error) {
+            console.log(error)
+            throw new Error(error);
+        }
+        
+    }
+
+    @Delete(':id')
+    async delete(@Param('id') id: string){
+        try {
+            return this.ebookService.EbookDelete(id)
         } catch (error) {
             console.log(error)
             throw new Error(error);
