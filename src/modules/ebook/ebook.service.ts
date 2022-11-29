@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/database/PrismaService';
 import { ebookDto } from './Dto.book';
 
@@ -14,7 +14,7 @@ export class EbookService {
     });
 
     if (ebookExists) {
-      throw new Error('The Ebook already exists');
+      throw new NotFoundException('The Ebook already exists');
     }
 
     const ebook = await this.prisma.ebook.create({
@@ -23,11 +23,11 @@ export class EbookService {
     return ebook;
   }
 
-  async EbookGetAll(){
+  async EbookGetAll(): Promise<ebookDto[]>{
     return this.prisma.ebook.findMany()
   }
   
-  async EbookGetId(id: string){
+  async EbookGetId(id: string): Promise<ebookDto>{
      const EbookId = await this.prisma.ebook.findUnique({
       where:{
         id,
@@ -36,7 +36,7 @@ export class EbookService {
 
      if(!EbookId){
       console.log(Error)
-      throw new Error('Book does not exists!');
+      throw new NotFoundException('Book does not exists!')
      }
 
      return EbookId
@@ -51,7 +51,7 @@ export class EbookService {
 
      if(!EbookId){
       console.log(Error)
-      throw new Error('Book does not exists!');
+      throw new NotFoundException('Book does not exists!');
      }
 
      return await this.prisma.ebook.update({
@@ -63,7 +63,7 @@ export class EbookService {
 
   }
 
-  async EbookDelete(id: string){
+  async EbookDelete(id: string): Promise<ebookDto>{
     const EbookId = await this.prisma.ebook.findUnique({
       where:{
         id,
@@ -72,7 +72,7 @@ export class EbookService {
 
      if(!EbookId){
       console.log(Error)
-      throw new Error('Book does not exists!');
+      throw new NotFoundException('Book does not exists!');
      }
 
      return await this.prisma.ebook.delete({
@@ -80,7 +80,6 @@ export class EbookService {
         id,
       }
      })
-
   }
 
 }

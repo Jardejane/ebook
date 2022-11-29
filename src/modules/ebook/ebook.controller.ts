@@ -11,7 +11,6 @@ export class EbookController{
         try {
             return this.ebookService.EbookCreate(data)
         } catch (error) {
-            console.log(error)
             throw new Error(error);
         }
     }
@@ -21,7 +20,6 @@ export class EbookController{
         try {
             return await this.ebookService.EbookGetAll()
         } catch (error) {
-            console.log(error)
             throw new Error(error);
         }
         
@@ -32,7 +30,6 @@ export class EbookController{
         try {
             return this.ebookService.EbookGetId(id)
         } catch (error) {
-            console.log(error)
             throw new Error(error);
         }
         
@@ -43,7 +40,6 @@ export class EbookController{
         try {
             return this.ebookService.EbookUpdate(id, data)
         } catch (error) {
-            console.log(error)
             throw new Error(error);
         }
         
@@ -54,7 +50,6 @@ export class EbookController{
         try {
             return this.ebookService.EbookDelete(id)
         } catch (error) {
-            console.log(error)
             throw new Error(error);
         }
         
