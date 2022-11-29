@@ -2,7 +2,7 @@ import { Controller, Post, Body, Get, Param, Put, Delete } from "@nestjs/common"
 import { ebookDto } from "./Dto.book";
 import { EbookService } from "./ebook.service";
 
-@Controller()
+@Controller("Ebooks")
 export class EbookController{
     constructor(private readonly ebookService: EbookService){}
 
