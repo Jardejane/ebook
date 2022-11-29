@@ -42,4 +42,25 @@ export class EbookService {
      return EbookId
   }
 
+  async EbookUpdate(id: string, data:ebookDto) : Promise<ebookDto>{
+    const EbookId = await this.prisma.ebook.findUnique({
+      where:{
+        id,
+      }
+     })
+
+     if(!EbookId){
+      console.log(Error)
+      throw new Error('Book does not exists!');
+     }
+
+     return await this.prisma.ebook.update({
+      data,
+      where:{
+        id,
+      }
+     })
+
+  }
+
 }
