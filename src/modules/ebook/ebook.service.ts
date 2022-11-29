@@ -1,3 +1,4 @@
+import { IsString } from 'class-validator';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/database/PrismaService';
 import { ebookDto } from './Dto.book';
@@ -23,63 +24,62 @@ export class EbookService {
     return ebook;
   }
 
-  async EbookGetAll(): Promise<ebookDto[]>{
-    return this.prisma.ebook.findMany()
-  }
-  
-  async EbookGetId(id: string): Promise<ebookDto>{
-     const EbookId = await this.prisma.ebook.findUnique({
-      where:{
-        id,
-      }
-     })
-
-     if(!EbookId){
-      console.log(Error)
-      throw new NotFoundException('Book does not exists!')
-     }
-
-     return EbookId
+  async EbookGetAll(): Promise<ebookDto[]> {
+    return this.prisma.ebook.findMany();
   }
 
-  async EbookUpdate(id: string, data:ebookDto) : Promise<ebookDto>{
+  async EbookGetId(id: string): Promise<ebookDto> {
     const EbookId = await this.prisma.ebook.findUnique({
-      where:{
+      where: {
         id,
-      }
-     })
+      },
+    });
 
-     if(!EbookId){
-      console.log(Error)
+    if (!EbookId) {
+      console.log(Error);
       throw new NotFoundException('Book does not exists!');
-     }
+    }
 
-     return await this.prisma.ebook.update({
+    return EbookId;
+  }
+
+  async EbookUpdate(id: string, data: ebookDto): Promise<ebookDto> {
+    const EbookId = await this.prisma.ebook.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!EbookId) {
+      console.log(Error);
+      throw new NotFoundException('Book does not exists!');
+    }
+
+    return await this.prisma.ebook.update({
       data,
-      where:{
+      where: {
         id,
-      }
-     })
-
+      },
+    });
   }
 
-  async EbookDelete(id: string): Promise<ebookDto>{
+  async EbookDelete(id: string) {
     const EbookId = await this.prisma.ebook.findUnique({
-      where:{
+      where: {
         id,
-      }
-     })
+      },
+    });
 
-     if(!EbookId){
-      console.log(Error)
+    if (!EbookId) {
+      console.log(Error);
       throw new NotFoundException('Book does not exists!');
-     }
-
-     return await this.prisma.ebook.delete({
-      where:{
-        id,
-      }
-     })
+    } else {
+      await this.prisma.ebook.delete({
+        where: {
+          id,
+        },
+      });
+      return 'successfully deleted';
+    }
   }
-
 }
