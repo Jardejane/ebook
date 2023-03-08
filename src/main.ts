@@ -5,10 +5,10 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
   const config = new DocumentBuilder()
-    .setTitle('Ebooks example')
+    .setTitle('Doctor example')
     .setDescription('The ebook API description')
     .setVersion('1.0')
-    .addTag('eboks')
+    .addTag('doctor')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

@@ -10,7 +10,7 @@ export class EbookService {
   async EbookCreate(data: ebookDto): Promise<ebookDto> {
     const ebookExists = await this.prisma.ebook.findFirst({
       where: {
-        bar_code: data.bar_code,
+        email: data.email,
       },
     });
 

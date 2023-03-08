@@ -9,9 +9,10 @@ datasource db {
 
 model Ebook {
   id          String @id @default(uuid())
-  title       String
-  description String
-  bar_code    String @unique
+  name        String
+  phone       String
+  email       String @unique
+  crp         String
 
   @@map("books")
 }

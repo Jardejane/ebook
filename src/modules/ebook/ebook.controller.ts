@@ -10,7 +10,7 @@ import {
 import { ebookDto } from './Dto.book';
 import { EbookService } from './ebook.service';
 
-@Controller('Ebooks')
+@Controller('Doctor')
 export class EbookController {
   constructor(private readonly ebookService: EbookService) {}
 

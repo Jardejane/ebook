@@ -7,13 +7,17 @@ export class ebookDto {
 
   @ApiProperty()
   @IsString()
-  title: string;
+  name: string;
 
   @ApiProperty()
   @IsString()
-  description: string;
+  phone: string;
 
   @ApiProperty()
   @IsString()
-  bar_code: string;
+  email: string;
+
+  @ApiProperty()
+  @IsString()
+  crp: string;
 }
