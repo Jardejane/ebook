@@ -13,6 +13,7 @@ model Ebook {
   phone       String
   email       String @unique
   crp         String
+  password    String
 
   @@map("books")
 }

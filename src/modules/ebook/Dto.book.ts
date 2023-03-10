@@ -20,4 +20,8 @@ export class ebookDto {
   @ApiProperty()
   @IsString()
   crp: string;
+
+  @ApiProperty()
+  @IsString()
+  password: string
 }
